@@ -24,8 +24,8 @@ def get_latest_game_id() -> int:
 def get_latest_local_game_id() -> int:
     files = os.listdir()
     files = [f for f in files if f.endswith(".json")]
-    game_ids = [f[-5] for f in files]
-    return sorted(game_ids)[0] if len(game_ids) else 0
+    game_ids = [int(f[:-5]) for f in files]
+    return sorted(game_ids, reverse=True)[0] if len(game_ids) else 0
 
 
 def scrape_sauertracker():
