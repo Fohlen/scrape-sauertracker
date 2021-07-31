@@ -32,7 +32,7 @@ def scrape_sauertracker():
     latest_id = get_latest_game_id()
     latest_local_id = get_latest_local_game_id()
     diff = latest_id - latest_local_id
-    files_to_download = [f"https://sauertracker.net/api/game/{id}" for id in range(latest_local_id, diff)]
+    files_to_download = [f"https://sauertracker.net/api/game/{id}" for id in range(latest_local_id, latest_id)]
     print(f"Obtaining {diff} games from SauerTracker")
     pool = Pool(processes=8)
     for _ in tqdm.tqdm(pool.imap_unordered(download_url, files_to_download), total=len(files_to_download)):
